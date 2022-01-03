@@ -9,7 +9,7 @@ import com.marobiana.quiz.lesson04.model.NewSeller;
 public interface NewSellerDAO {
 	
 	public int insertSeller(
-			@Param("nickname") String name,
+			@Param("nickname") String nickname,
 			@Param("profileImageUrl") String profileImageUrl,
 			@Param("temperature") double temperature
 			);

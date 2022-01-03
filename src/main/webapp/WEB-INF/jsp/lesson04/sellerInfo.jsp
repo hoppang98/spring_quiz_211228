@@ -16,8 +16,8 @@
 	<div class="container">
 		<h3>${subject}</h3>
 		<h4>${result.nickname}</h4>
-		<img src=${result.profileImageUrl}>
-		<h5 style="color:blue">${result.temperature}</h5>
+		<img src="${result.profileImageUrl}" width="200">
+		<h2 class="text-warning">${result.temperature}</h2>
 	</div>
 	
 </body>

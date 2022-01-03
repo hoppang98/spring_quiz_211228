@@ -15,7 +15,7 @@
 	<div class="container">
 		<h1>판매자 추가</h1>
 		
-		<form method="post" action="/lesson04/test01/add_seller"> <%-- /lesson04/ex01/add_user controller에 있는 이 부분으로 자료들을 넘겨준다 --%>
+		<form method="post" action="/lesson04/test01/add_seller"> <%-- action을 통해 /lesson04/ex01/add_user controller에 있는 이 부분으로 자료들을 넘겨준다 --%>
 			<label>닉네임 : </label> <input type="text" class="form-control" name="nickname"> 
 			<label>프로필사진 url : </label> <input type="text" class="form-control" name="profileImageUrl">
 			<label>온도 : </label><input type="text" class="form-control" name="temperature">

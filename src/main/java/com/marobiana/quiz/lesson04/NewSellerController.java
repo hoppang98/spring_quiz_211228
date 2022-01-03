@@ -44,8 +44,8 @@ public class NewSellerController {
 		} else {
 			newSeller = newSellerBO.getSeller(id);
 		}
-		model.addAttribute("result", newSeller);
 		model.addAttribute("subject", "판매자정보");
+		model.addAttribute("result", newSeller); // addAttribute를 통해서 이제 newSeller 객체 안에 있는 값을 sellerInfo.jsp에서 result.~~~으로 사용 가능
 		
 		return "lesson04/sellerInfo";
 	}
