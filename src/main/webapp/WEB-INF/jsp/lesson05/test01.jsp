@@ -23,17 +23,17 @@
 	<h4>나누기 : ${number1 / number2}</h4>
 	
 	<!-- 3번 -->
-	<h1>3. core out</h1>
+	<h1>3. JSTL core out</h1>
 	<c:out value="<script>JSTL core out</script>" />
 	
 	<!-- 4번 -->
-	<h1>3. core if</h1>
-	<c:set var="number3" value="${(number1 + number2) / 2}" />
-	<c:if test="${number3 > 10}">
-		<h1>평균값 : ${number3}</h1>
+	<h1>3. JSTL core if</h1>
+	<c:set var="average" value="${(number1 + number2) / 2}" />
+	<c:if test="${average >= 10}">
+		<h1>평균값 : ${average}</h1>
 	</c:if>
-	<c:if test="${number3 < 10}">
-		<h1>평균값 : ${number3}</h1>
+	<c:if test="${average < 10}">
+		<h3>평균값 : ${average}</h3>
 	</c:if>
 	
 	<!-- 5번 -->
