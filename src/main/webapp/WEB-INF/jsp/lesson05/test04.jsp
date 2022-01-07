@@ -48,7 +48,14 @@
 						
 						<c:set var="email" value="${members.email}" />
 						<td><b>${fn:split(email, "@")[0]}</b>@${fn:split(email, "@")[1]}</td>
-						<td>${members.introduce}</td>
+						<c:choose>
+							<c:when test="${fn:length(members.introduce) <= 15}" >
+								<td>${members.introduce }</td>
+							</c:when>
+							<c:otherwise>
+								<td>${fn:substring(members.introduce, 0, 15) }...</td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 				</c:forEach>
 			</tbody>

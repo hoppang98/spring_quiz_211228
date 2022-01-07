@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/weatherStyle.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<meta charset="UTF-8">
+<title>날씨 정보 추가</title>
+</head>
+<body>
+	<div id="wrap">
+		<div class="content d-flex">
+			<nav class="col-2">
+				<div class="logo d-flex dustify-content-center mt-3">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Emblem_of_the_Government_of_the_Republic_of_Korea.svg/800px-Emblem_of_the_Government_of_the_Republic_of_Korea.svg.png" width="25"> 
+					<span class="text-white font-weight-bold ml-2">기상청</span>
+				</div>
+				
+				<ul class="nav flex-column mt-4">
+					<li class="nav-item"><a href="/lesson05/weatherView" class="nav-link menu-font">날씨</a></li>
+					<li class="nav-item"><a href="/lesson05/addWeather" class="nav-link menu-font">날씨입력</a></li>
+					<li class="nav-item"><a href="#" class="nav-link menu-font">테마날씨</a></li>
+					<li class="nav-item"><a href="#" class="nav-link menu-font">관측기후</a></li>
+				</ul>
+			</nav>
+			
+			<section class="col-10 mt-3 ml-5">
+				<h3>날씨 입력</h3>
+				<form method="post" action="/lesson05/addWeather">
+					<div class="d-flex justify-content-between mt-5">
+						<div class="d-flex align-items-center">
+							<div class="input-label">날짜</div>
+							<input type="text" class="form-control" id="date" name="date">
+						</div>
+						
+						<div class="d-flex align-items-center">
+							<div class="input-label">날씨</div>
+							<select class="form-control" name="weather">
+								<option>맑음</option>
+								<option>구름조금</option>
+								<option>흐림</option>
+								<option>비</option>
+							</select>
+						</div>
+
+				</form>
+				
+			</section>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$("#date").datepicker({
+				dateFormat : "yy년mm월dd일",
+				changeMonth : true,
+				changeYear : true
+			});
+		});
+	</script>
+</body>
+</html>
