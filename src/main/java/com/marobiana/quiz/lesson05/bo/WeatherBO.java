@@ -18,8 +18,11 @@ public class WeatherBO {
 		return weatherDAO.selectWeatherList();
 	}
 	
-	public int addWeather(Weather weather) {
-		return weatherDAO.insertWeather(weather);
+	public int addWeather(String date, String weather, double temperatures, double precipitation, String microDust, double windSpeed) {
+		return weatherDAO.insertWeather(date, weather, temperatures, precipitation, microDust, windSpeed);
 	}
 	
+	public int addWeatherByObject(Weather weather) {
+		return weatherDAO.addWeatherByObject(weather);
+	}
 }

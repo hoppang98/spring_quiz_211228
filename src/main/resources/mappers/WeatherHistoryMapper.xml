@@ -21,7 +21,32 @@
  		
  	</select>
  	
- 	<insert id="insertWeather" parameterType="com.marobiana.quiz.lesson05.model.Weather">
+ 	<insert id="insertWeather" parameterType="map">
+ 		INSERT INTO `weatherhistory`
+ 		(
+ 			`date`
+ 			,`weather`
+			,`temperatures`
+			,`precipitation`
+			,`microDust`
+			,`windSpeed`
+			,`createdAt`
+			,`updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{date}
+ 			,#{weather}
+			,#{temperatures}
+			,#{precipitation}
+			,#{microDust}
+			,#{windSpeed}
+			,now()
+			,now()
+ 		)
+ 	</insert>
+ 	
+ 	<insert id="addWeatherByObject" parameterType="com.marobiana.quiz.lesson05.model.Weather">
  		INSERT INTO `weatherhistory`
  		(
  			`date`

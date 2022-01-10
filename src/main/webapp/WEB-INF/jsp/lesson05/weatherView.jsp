@@ -26,8 +26,8 @@
 				</div>
 				
 				<ul class="nav flex-column mt-4">
-					<li class="nav-item"><a href="/lesson05/weatherView" class="nav-link menu-font">날씨</a></li>
-					<li class="nav-item"><a href="/lesson05/addWeather" class="nav-link menu-font">날씨입력</a></li>
+					<li class="nav-item"><a href="/lesson05/weather_history" class="nav-link menu-font">날씨</a></li>
+					<li class="nav-item"><a href="/lesson05/addWeatherView" class="nav-link menu-font">날씨입력</a></li>
 					<li class="nav-item"><a href="#" class="nav-link menu-font">테마날씨</a></li>
 					<li class="nav-item"><a href="#" class="nav-link menu-font">관측기후</a></li>
 				</ul>
@@ -56,7 +56,7 @@
 							</td>
 							
 							<td>
-								<c:if test="${weatherList.weather == '비'}" >
+								<c:if test="${weatherList.weather == '비'}" > <%-- if문 여러개와 when,choose문의 차이, eq말고 == 차이 --%>
 									<img src="http://marondal.com/material/images/dulumary/web/jstl/rainy.jpg">
 								</c:if>
 								<c:if test="${weatherList.weather == '맑음'}" >
