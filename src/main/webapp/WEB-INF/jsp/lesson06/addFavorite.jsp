@@ -55,6 +55,7 @@
 					,success:function(data){
 						if(data == "success") {
 							alert("입력 성공");
+							location.href = "/lesson06/test01/favorite_list_view"; // 즐겨찾기 목록으로 이동
 						} else {
 							alert("입력실패");
 						}

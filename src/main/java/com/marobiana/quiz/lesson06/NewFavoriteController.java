@@ -34,14 +34,14 @@ public class NewFavoriteController {
 		int count = newFavoriteBO.addFavorite(name, url);
 		
 		if(count == 1) {
-			return "success";
+			return "success"; // jsp의 ajax를 위한 데이터
 		} else {
 			return "fail";
 		}
 	}
 	
 	@GetMapping("/lesson06/test01/favorite_list_view")
-	public String test03(Model model) {
+	public String favoriteList (Model model) {
 		List<Favorite> favorite = newFavoriteBO.getFavoriteList();
 		model.addAttribute("favorite", favorite);
 		return "/lesson06/favoriteView";

@@ -16,7 +16,7 @@
 <body>
 	<div class="container">
 		<h1>즐겨찾기 목록</h1>
-		<table class="table">
+		<table class="table text-center">
 			<thead>
 				<tr>
 					<th>No.</th>
@@ -29,7 +29,7 @@
 					<tr>
 						<td>${status.count}</td>
 						<td>${favorite.name}</td>
-						<td>${favorite.url}</td>
+						<td><a href="${favorite.url}">${favorite.url}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
