@@ -19,4 +19,15 @@
  			,now()
  		)
  	</insert>
+ 	
+ 	<select id="selectFavoriteList" resultType="com.marobiana.quiz.lesson06.model.Favorite">
+ 	 		SELECT
+ 			`id`
+			,`name`
+			,`url`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`favorite`
+ 	</select>
  </mapper>
