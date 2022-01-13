@@ -21,4 +21,17 @@ public class NewFavoriteBO {
 	public List<Favorite> getFavoriteList(){
 		return newFavoriteDAO.selectFavoriteList();
 	}
+	
+	public boolean isDuplicateUrl(String url) {
+		int count = newFavoriteDAO.selectCountUrl(url);
+		if(count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public int deleteFavorite(int id) { //delete,insert,update는 다 실행한 행의 개수 return으로 int사용
+		return newFavoriteDAO.deleteFavorite(id);
+	}
 }

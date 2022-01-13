@@ -1,6 +1,8 @@
 package com.marobiana.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,7 @@ public class NewFavoriteController {
 		return "/lesson06/addFavorite";
 	}
 	
-	@ResponseBody // 데이터를 전달하는 경우에 Resposenbody
+	@ResponseBody // 데이터를 이용하는 경우에 Resposenbody
 	@PostMapping("/lesson06/test01/add_favorite")
 	public String addFavorite(
 			@RequestParam("name") String name,
@@ -46,5 +48,39 @@ public class NewFavoriteController {
 		model.addAttribute("favorite", favorite);
 		return "/lesson06/favoriteView";
 	}
+	
+	
+	
+	@ResponseBody
+	@PostMapping("/lesson06/test02/duplicate_url")
+	public Map<String, String> duplicateUrl(
+			@RequestParam("url") String url
+			){
+		Map<String, String> result = new HashMap<>();
+		
+		if(newFavoriteBO.isDuplicateUrl(url)) { //중복
+			result.put("isDuplicate", "true");
+		} else {
+			result.put("isDuplicate", "false"); //사용가능
+		}
+		return result;
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/lesson06/test02/delete_favorite")
+	public String deleteFavorite(
+			@RequestParam("id") int id
+			) {
+		int count = newFavoriteBO.deleteFavorite(id);
+		if(count == 0) {
+			return "fail";
+		} else {
+			return "success";
+		}
+		
+	}
+	
+
 	
 }

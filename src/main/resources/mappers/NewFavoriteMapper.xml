@@ -21,7 +21,7 @@
  	</insert>
  	
  	<select id="selectFavoriteList" resultType="com.marobiana.quiz.lesson06.model.Favorite">
- 	 		SELECT
+ 	 	SELECT
  			`id`
 			,`name`
 			,`url`
@@ -30,4 +30,21 @@
 		FROM
 			`favorite`
  	</select>
+ 	
+ 	 <select id="selectCountUrl" parameterType="string" resultType="int"> <!-- 중복되는 갯수를 반환하니까 resultType은 int -->
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`favorite`
+ 		WHERE
+ 			`url` = #{url}
+ 	</select>
+ 	
+ 	<delete id="deleteFavorite" parameterType="int">
+ 		DELETE FROM
+ 			`favorite`
+ 		WHERE
+ 			`id` = #{id}
+ 	</delete>
+ 	
  </mapper>
