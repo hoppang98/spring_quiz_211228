@@ -32,8 +32,8 @@
 						<td>${favorite.name}</td>
 						<td><a href="${favorite.url}">${favorite.url}</a></td>
 						<td>
-							<button type="button" class="btn btn-danger btn-sm deleteBtn" data-favorite-id="${favoerite.id}">삭제</button> 
-							<%--id="deleteBtn"를 쓰면 다들 동일한 값을 가진다. 어떤 삭제 버튼을 눌렀는지 모른다. class에 deleteBtn을 넣어서 해결 가능 --%>
+							<button type="button" class="btn btn-danger btn-sm deleteBtn" data-favorite-id="${favorite.id }">삭제</button> 
+							<%-- id="deleteBtn"를 쓰면 다들 동일한 값을 가진다. 어떤 삭제 버튼을 눌렀는지 모른다. class에 deleteBtn을 넣어서 해결 가능 --%>
 							<%-- 반복문 돌리면서 가져온 favoerite.id를 추가해서 버튼마다 다른 value를 넣으랴고 했는데... value대신 data속성으로 아래에서 $(this).data("favorite-id") 이렇게 사용 가능 --%>
 							<%-- data- 하고 뒤에 내가 원하는 이름 지어주기 --%>
 						</td>
@@ -46,8 +46,9 @@
 	<script>
 		$(document).ready(function(){
 			//여러개의 버튼에서 삭제하기
-			$(".deleteBtn").on("click", function(){ // id가 아닌 class로 접근해서 .deleteBtn다 #아님
-				var id = $(this).data("favorite-id"); //this를 넣으면 많은 삭제버튼중에서 누른 특정버튼에 대한 객체를 가져올 수 있다.
+			$(".deleteBtn").on("click", function() { // id가 아닌 class로 접근해서 .deleteBtn다 #아님
+				
+				let id = $(this).data("favorite-id"); //this를 넣으면 많은 삭제버튼중에서 누른 특정버튼에 대한 객체를 가져올 수 있다.
 				// 아이디 받아오는 방식 확인
 				
 				$.ajax({
@@ -67,7 +68,6 @@
 					}
 					
 				});
-				return false;
 			});
 			
 		});

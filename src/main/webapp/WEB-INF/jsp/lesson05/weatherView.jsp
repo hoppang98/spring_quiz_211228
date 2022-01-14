@@ -56,16 +56,16 @@
 							</td>
 							
 							<td>
-								<c:if test="${weatherList.weather == '비'}" > <%-- if문 여러개와 when,choose문의 차이, eq말고 == 차이 --%>
+								<c:if test="${weatherList.weather eq '비'}" >
 									<img src="http://marondal.com/material/images/dulumary/web/jstl/rainy.jpg">
 								</c:if>
-								<c:if test="${weatherList.weather == '맑음'}" >
+								<c:if test="${weatherList.weather eq '맑음'}" >
 									<img src="http://marondal.com/material/images/dulumary/web/jstl/sunny.jpg">
 								</c:if>
-								<c:if test="${weatherList.weather == '구름조금'}" >
+								<c:if test="${weatherList.weather eq '구름조금'}" >
 									<img src="http://marondal.com/material/images/dulumary/web/jstl/partlyCloudy.jpg">
 								</c:if>
-								<c:if test="${weatherList.weather == '흐림'}" >
+								<c:if test="${weatherList.weather eq '흐림'}" >
 									<img src="http://marondal.com/material/images/dulumary/web/jstl/cloudy.jpg">
 								</c:if>
 							</td>

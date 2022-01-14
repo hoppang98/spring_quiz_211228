@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Weather {
 	private int id;
-	@DateTimeFormat(pattern="yyyy-MM-dd") // model형태로 받아올 때 사용
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date;
 	private String weather;
 	private double temperatures;

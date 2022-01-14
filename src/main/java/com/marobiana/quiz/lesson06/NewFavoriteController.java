@@ -26,7 +26,7 @@ public class NewFavoriteController {
 		return "/lesson06/addFavorite";
 	}
 	
-	@ResponseBody // 데이터를 이용하는 경우에 Resposenbody
+	@ResponseBody // json형식으로 데이터를 받을 때 Resposenbody
 	@PostMapping("/lesson06/test01/add_favorite")
 	public String addFavorite(
 			@RequestParam("name") String name,
