@@ -34,21 +34,21 @@
                     <div class="display-4 text-white">실시간<br>예약하기</div>
                 </section>
                 <section class="confirm col-4">
-                    <!-- 예약 확인, 회원 비회원 라디오 버튼 -->
+
                     <div class="m-3">
                         <span class="reserve-confirm mr-3">예약 확인</span>
 
                     </div>
 
-                    <!-- 아이디 비밀번호(회원용)-->
+
                     <div id="memberInputBox" class="m-2">
                         <div class="d-flex justify-content-end mr-3">
-                            <span class="text-white">아이디:</span>
-                            <input type="text" id="id" class="form-control input-form">
+                            <span class="text-white">이름:</span>
+                            <input type="text" id="nameInput" class="form-control input-form">
                         </div>
                         <div class="d-flex mt-2 justify-content-end mr-3">
-                            <span class="text-white">비밀번호:</span>
-                            <input type="password" id="password" class="form-control input-form">
+                            <span class="text-white">전화번호:</span>
+                            <input type="text" id="phoneNumberInput" class="form-control input-form">
                         </div>
 
                         <!-- 버튼 -->
@@ -75,55 +75,51 @@
         </div>
 
         <script>
-            $(document).ready(function() {
+        	$(document).ready(function() {
 
-                $('.submit-btn').on('click', function() {
-                    e.preventDefault();
+                $(".submit-btn").on("click", function() {
 					
-                    let name = $("#name").val();
-                    let phoneNumber = $("#phoneNumber").val();
+                    let name = $("#nameInput").val();
+                    let phoneNumber = $("#phoneNumberInput").val();
                     
-                     if ($('#name').val().trim() == '') {
-                         alert("이름 입력하세요");
+                     if (name == '') {
+                         alert("이름을 입력하세요");
                          return;
                      }
 
-                     if ($('#phoneNumber').val() == '') {
+                     if (phoneNumber == '') {
                          alert("전화번호를 입력하세요");
                          return;
                      }
                      
                      $.ajax({
-                    	type:"get" 
+                    	type:"get"
                     	,url:"/lesson06/test03/check_booking"
-                    	,data{"name":name, "phoneNumber":phoneNumber}
+                    	,data:{"name":name, "phoneNumber":phoneNumber}
                      	,success:function(data){
-                     		if(data.check == "true"){
-                     			alert("있는 예약");
-                     		} else{
-                     			alert("없는 예약");
-                     		}
+                     		//if(data.check == "true"){
+    							// var booking = data.booking;
+    							alert(
+    									"이름 : " + data.name
+										+ "\n날짜 : " + data.date.slice(0, 10)
+										+ "\n일수 : " + data.day
+										+ "\n인원 : " + data.headcount
+										+ "\n상태 : " + data.state);
+                     		//} else{
+                     		//	alert("없는 예약입니다.");
+                     		//}
                      	}
                      	,error:function(){
     						alert("에러발생");
     					}
                      });
-                 }
-                
-                
-                
-                        //-- 두번째 방법
-                        if ($('#phoneNumber').val().startsWith('010') === false) {
-                            alert("010으로 시작하는 번호만 입력 가능합니다.");
-                            return;
-                        }
-                    }
-                });
-
-                // 4. 이미지 3초 간격으로 변경하기
-
-                var bannerSrcArr = ['http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner1.jpg', 'http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner2.jpg', 'http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner3.jpg', 'http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner4.jpg'];
-                var currentIndex = 0;
+                 });
+            });
+               
+        	
+        	// 4. 이미지 3초 간격으로 변경하기
+            var bannerSrcArr = ['http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner1.jpg', 'http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner2.jpg', 'http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner3.jpg', 'http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner4.jpg'];
+            var currentIndex = 0;
                 setInterval(function() {
                     $('#bannerImage').attr('src', bannerSrcArr[currentIndex]);
                     currentIndex++;
@@ -132,12 +128,6 @@
                         currentIndex = 0;
                     }
                 }, 3000); // 3초에 한번씩 함수 실행
-
-            });
-            
-            
-            
-
         </script>
     </body>
 </html>

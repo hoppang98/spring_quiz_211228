@@ -22,31 +22,30 @@ public class BookingController {
 	@Autowired
 	private BookingBO bookingBO;
 	
-	// 예약 홈페이지 jsp로 이동
-	@RequestMapping("/lesson06/test03/bookingHompage")
-	public String addFavoriteView () {
-		return "/lesson06/bookingHomepage";
-	}
-	
-	// 예약 리스트 model형식으로 데이터 받아오고 view로 연결 
+	// 예약 리스트를 List형식으로 데이터 받아오고 model에 담아서 view로 연결 
 	@GetMapping("/lesson06/test03/bookingList_view")
 	public String bookingList(Model model) {
-		List<Booking> booking = bookingBO.getBookingList();
-		model.addAttribute("booking", booking);	
+		List<Booking> bookingList = bookingBO.getBookingList();
+		model.addAttribute("bookingList", bookingList);	
 		return "/lesson06/bookingList";
 	}
 	
-	@ResponseBody
+	@ResponseBody	
 	@GetMapping("/lesson06/test03/delete_booking")
-	public String deleteBooking(
+	public Map<String, String> deleteBooking(					//결과는 String말고 규격화된 map형태로 보내는게 좋다
 			@RequestParam("id") int id
 			) {
+		Map<String, String> result = new HashMap<>(); 
+		
 		int count = bookingBO.deleteBooking(id);
-		if(count == 0) {
-			return "fail";
+		
+		if(count == 1) {
+			result.put("result", "success");
 		} else {
-			return "success";
+			result.put("result", "fail");
 		}
+		
+		return result;
 	}
 	
 	@GetMapping("/lesson06/test03/add_booking_view")
@@ -55,38 +54,43 @@ public class BookingController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/lesson06/test03/add_booking")
-	public String addFavorite(
+	@GetMapping("/lesson06/test03/add_booking")
+	public Map<String, String> addFavorite(
 			@RequestParam("name") String name,
-			@RequestParam("date") String date, // 여기서 date객체를 String 타입으로 변환
+			@RequestParam("date") String date,
 			@RequestParam("day") int day,
 			@RequestParam("headcount") int headcount,
 			@RequestParam("phoneNumber") String phoneNumber
 			) {
 		
+		Map<String, String> result = new HashMap<>();
+		
 		int count = bookingBO.addBooking(name, date, day, headcount, phoneNumber);
 		
 		if(count == 1) {
-			return "success";
+			result.put("result", "success");
 		} else {
-			return "fail";
+			result.put("result", "fail");
 		}
+		return result;
 	}
 	
+	// 예약 홈페이지 jsp로 이동
+	@RequestMapping("/lesson06/test03/bookingHompage")
+	public String addFavoriteView () {
+		return "/lesson06/bookingHomepage";
+	}
+	
+	// 예약 내역 확인
 	@ResponseBody
 	@GetMapping("/lesson06/test03/check_booking")
-	public Map<String, String> checkBooking(
+	public Booking checkBooking(
 			@RequestParam("name") String name,
 			@RequestParam("phoneNumber") String phoneNumber
 			) {
 		
-		Map<String, String> result = new HashMap<>();
+		Booking booking = bookingBO.checkBooking(name, phoneNumber);			// 결과가 하나일때는 List로 받아오는게 아닌 그 객체(booking)를 통채로 가져온다
 		
-		if(bookingBO.checkBooking(name, phoneNumber)) {
-			result.put("check", "true");
-		} else {
-			result.put("check", "false");
-		}
-		return result;
+		return booking;
 	}
 }

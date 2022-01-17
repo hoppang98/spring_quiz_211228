@@ -34,6 +34,7 @@
  			, `day`
  			, `headcount`
  			, `phoneNumber`
+ 			, `state`
  			,`createdAt`
 			,`updatedAt`
  		)
@@ -44,18 +45,27 @@
  			, #{day}
  			, #{headcount}
  			, #{phoneNumber}
+ 			, #{state}
  			, now()
  			, now()
  		)
  	</insert>
  	
- 	<select id="selectCheckBooking" parameterType="string" resultType="int">
+ 	<select id="selectCheckBooking" parameterType="map" resultType="com.marobiana.quiz.lesson06.model.Booking">
  		SELECT
- 			count(*)
+ 			`id`
+			, `name`
+			, `headcount`
+			, `day`
+			, `date`
+			, `phoneNumber`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
  		FROM
  		 	`booking`
  		WHERE
  			`name` = #{name}
- 			, `phoneNumber` = #{phoneNumber}
+ 			AND `phoneNumber` = #{phoneNumber}
  	</select>
  </mapper>

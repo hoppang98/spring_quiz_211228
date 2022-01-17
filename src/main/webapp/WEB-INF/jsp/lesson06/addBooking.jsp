@@ -44,7 +44,6 @@
      <script>
      	$(document).ready(function(){
      		
-     		
      		$("#dateInput").datepicker({
      			dateFormat : "yy-mm-dd"
      			,changeMonth : true
@@ -71,8 +70,8 @@
      				alert("숙박일수를 입력하세요.");
      				return;
      			}
-     			if(headcount == "") {
-     				alert("숙박인원을 입력하세요.");
+     			if(isNaN(headcount)) {
+     				alert("숙박인원은 숫자만 입력하세요.");
      				return;
      			}
      			if(phoneNumber == "") {
@@ -81,11 +80,11 @@
      			}
      			
      			$.ajax({
-     				type:"post"
+     				type:"get"
      				,url:"/lesson06/test03/add_booking"
      				,data:{"name":name, "date":date, "day":day, "headcount":headcount, "phoneNumber":phoneNumber}
      				,success:function(data){
-     					if(data == "success") {
+     					if(data.result == "success") {
      						alert("입력 성공");
      					} else {
      						alert("입력 실패")

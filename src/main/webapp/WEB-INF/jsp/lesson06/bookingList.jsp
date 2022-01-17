@@ -43,8 +43,9 @@
             		</tr>
             	</thead>
             	<tbody>
-            		<c:forEach var="booking" items="${booking}" varStatus="status">
+            		<c:forEach var="booking" items="${bookingList}" varStatus="status">
             			<tr>
+            			
             				<td>${booking.name}</td>
             				<td>
             					<fmt:formatDate value="${booking.date}" pattern="yyyy년 M월 dd일"/>
@@ -53,18 +54,18 @@
             				<td>${booking.headcount}</td>
             				<td>${booking.phoneNumber}</td>
       
-            					<c:choose>
-            						<c:when test="${booking.state eq '대기중'}" >
-            							<td class="text-danger">${booking.state}</td>
-            						</c:when>
-            						<c:when test="${booking.state eq '확정'}" >
-            							<td class="text-warning">${booking.state}</td>
-            						</c:when>
-            					
-            					</c:choose>
+            				<c:choose>
+            					<c:when test="${booking.state eq '대기중'}" >
+            						<td class="text-danger">${booking.state}</td>
+            					</c:when>
+            					<c:when test="${booking.state eq '확정'}" >
+            						<td class="text-warning">${booking.state}</td>
+            					</c:when>
+            				</c:choose>
             				
             				<td>
-            					<button type="button" class="btn btn-danger btn-sm deleteBtn" data-booking-id="${booking.id }">삭제</button>
+            					<button type="button" class="btn btn-danger btn-sm deleteBtn" data-booking-id="${booking.id}">삭제</button> 
+            					<%-- data-booking-id는 객체 하나하나에 id값을 부여, 삭제버튼마다 고유의 id를 만든다 --%>
             				</td>
             				
             			</tr>
@@ -75,15 +76,15 @@
 	
 	<script>
 		$(document).ready(function(){
-			$(".deleteBtn").on("click", function(){
-				let id = $(this).data("booking-id");
+			$(".deleteBtn").on("click", function(){ // deleteBtn 클래스에 있는 모든 객체에 적용 가능, id로는 불가하고 class로만 가능!
+				let bookingId = $(this).data("booking-id"); //data-(booking-id)
 				
 				$.ajax({
 					type:"get"
 					,url:"/lesson06/test03/delete_booking"
-					,data:{"id":id}
-					,success:function(data) {
-						if(data == "success") {
+					,data:{"id":bookingId} 						//{"컨트롤러의 @RequestParam":내가 만든 변수명}
+					,success:function(data) {					// data가 controller에서 보낸 return result를 가지고 있음
+						if(data.result == "success") {
 							alert("삭제 성공");
 							location.reload();
 						} else {
