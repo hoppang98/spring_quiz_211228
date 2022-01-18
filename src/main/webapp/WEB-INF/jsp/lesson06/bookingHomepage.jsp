@@ -97,17 +97,17 @@
                     	,url:"/lesson06/test03/check_booking"
                     	,data:{"name":name, "phoneNumber":phoneNumber}
                      	,success:function(data){
-                     		//if(data.check == "true"){
-    							// var booking = data.booking;
-    							alert(
-    									"이름 : " + data.name
-										+ "\n날짜 : " + data.date.slice(0, 10)
-										+ "\n일수 : " + data.day
-										+ "\n인원 : " + data.headcount
-										+ "\n상태 : " + data.state);
-                     		//} else{
-                     		//	alert("없는 예약입니다.");
-                     		//}
+                     			if(data.result == "fail") { 
+                     				alert("조회된 결과가 없습니다");
+                     			} else if(data.result == "success") {
+	    							alert(
+	    									"이름 : " + data.booking.name
+											+ "\n날짜 : " + data.booking.date.slice(0, 10)
+											+ "\n일수 : " + data.booking.day
+											+ "\n인원 : " + data.booking.headcount
+											+ "\n상태 : " + data.booking.state);
+                     			}
+
                      	}
                      	,error:function(){
     						alert("에러발생");

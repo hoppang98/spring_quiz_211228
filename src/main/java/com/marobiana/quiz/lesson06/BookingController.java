@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -84,13 +83,22 @@ public class BookingController {
 	// 예약 내역 확인
 	@ResponseBody
 	@GetMapping("/lesson06/test03/check_booking")
-	public Booking checkBooking(
+	public Map<String,Object> checkBooking(
 			@RequestParam("name") String name,
 			@RequestParam("phoneNumber") String phoneNumber
 			) {
 		
-		Booking booking = bookingBO.checkBooking(name, phoneNumber);			// 결과가 하나일때는 List로 받아오는게 아닌 그 객체(booking)를 통채로 가져온다
+		Map<String, Object> response = new HashMap<>();	// jsp에 보내줄 데이터 불러오기 성공여부
 		
-		return booking;
+		Booking booking = bookingBO.checkBooking(name, phoneNumber);		// 돌려받는 객체가 꼭 하나면 이런 형태(booking)로 받아도 괜찮은데 여러개일 확률이 있으면 무조건 List
+		
+		if(booking == null) {					// 조회된 데이터가 없으면 객체는 null이다.
+			response.put("result", "fail");		//성공(success), 실패(fail) 여부는 꼭 담아주는게 좋다
+		} else {
+			response.put("result", "success"); // success라는 String과
+			response.put("booking", booking);	// booking 객체를 둘다 response의 booking과 result라는 Key에 각각 담아서 보낸다
+		}
+
+		return response;
 	}
 }

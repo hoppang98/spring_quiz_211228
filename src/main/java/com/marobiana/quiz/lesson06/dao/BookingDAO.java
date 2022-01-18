@@ -23,7 +23,7 @@ public interface BookingDAO {
 			@Param("state") String state
 			);
 	
-	public Booking selectCheckBooking(
+	public Booking selectCheckBooking(		// 돌려받는 객체가 꼭 하나면 이런 형태로 받아도 괜찮은데 여러개일 확률이 있으면 무조건 List
 			@Param("name") String name, 
 			@Param("phoneNumber") String phoneNumber
 			);

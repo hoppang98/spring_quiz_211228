@@ -27,6 +27,6 @@ public class BookingBO {
 	}
 	
 	public Booking checkBooking (String name, String phoneNumber) { // 결과가 하나일때는 List로 받아오는게 아닌 그 객체(booking)를 통채로 가져온다
-		return bookingDAO.selectCheckBooking(name, phoneNumber);
+		return bookingDAO.selectCheckBooking(name, phoneNumber); //// 돌려받는 객체가 꼭 하나면 이런 형태로 받아도 괜찮은데 여러개일 확률이 있으면 무조건 List
 	}
 }
